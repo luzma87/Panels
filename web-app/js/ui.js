@@ -48,7 +48,7 @@ function log(msg, type, title, hide) {
         hide    : hide
     });
 }
-function openLoader(msg, title) {
+function lzmOpenLoader(msg, title) {
     msg = $.trim(msg);
     title = $.trim(title);
     var $msg = $("<div/>");
@@ -70,6 +70,6 @@ function openLoader(msg, title) {
     });
     $("#dlgLoader").css({zIndex : 1061})
 }
-function closeLoader() {
+function lzmCloseLoader() {
     $("#dlgLoader").modal('hide');
 }

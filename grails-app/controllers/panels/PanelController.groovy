@@ -8,11 +8,11 @@ class PanelController {
         def paneles = panel ? Panel.findAllByPadre(panel, [sort: "nombre"]) : Panel.findAllByPadreIsNull([sort: "nombre"])
 
         paneles.each { p ->
-            def notas = Nota.countByPanel(p)
+            def notas = Nota.findAllByPanel(p)
             def hijos = Panel.findAllByPadre(p, [sort: "nombre"])
             def clase = hijos.size() > 0 ? "jstree-open" : ""
             def type = "panel"
-            if (notas == 0) {
+            if (notas.size() == 0) {
                 type = "noNotes"
             }
             def data = "\"type\":\"${type}\""
@@ -20,10 +20,19 @@ class PanelController {
                 data += ", \"icon\":\"${p.icon}\""
             }
             arbol += "<li id='panel_${p.id}' class='${clase}' data-jstree='{${data}}'" +
-                    "data-notas='${notas}'>"
-            arbol += p.nombre + " (${notas})"
-            if (hijos.size() > 0) {
+                    "data-notas='${notas.size()}'>"
+            arbol += "(${notas.size()}) " + p.nombre
+            if (hijos.size() > 0 || notas.size() > 0) {
                 arbol += "<ul>"
+                notas.each { n ->
+                    def dataNota = "\"type\":\"nota\""
+//                    if (p.icon && p.icon != "") {
+//                        dataNota += ", \"icon\":\"${p.icon}\""
+//                    }
+                    arbol += "<li id='nota_${n.id}' data-jstree='{${dataNota}}'>"
+                    arbol += n.titulo
+                    arbol += "</li>"
+                }
                 arbol += creaArbol(p)
                 arbol += "</ul>"
             }

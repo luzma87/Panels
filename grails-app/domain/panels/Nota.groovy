@@ -9,13 +9,13 @@ class Nota {
     String keywords
     String contenido
 
-    int posx
-    int posy
-    int width
-    int height
-    int zIndex
+    int posx = 0
+    int posy = 0
+    int width = 0
+    int height = 0
+    int zIndex = 0
 
-    Date fecha
+    Date fecha = new Date()
 
     static mapping = {
         table: 'nota'
@@ -45,6 +45,7 @@ class Nota {
 
     static constraints = {
         titulo minSize: 3, maxSize: 20
+        contenido nullable: true
     }
 
 }

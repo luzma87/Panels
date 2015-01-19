@@ -15,7 +15,7 @@
  */
 ;
 (function ($, window) {
-    $.fn.contextMenu = function (settings) {
+    $.fn.lzmContextMenu = function (settings) {
 
         //default settings
         var defaults = {
@@ -133,7 +133,7 @@
 
         function createContextMenu(items, $element, submenu) {
             var $menu = $("<ul class='lzm-dropdown-menu dropdown-menu'>");
-            if(submenu) {
+            if (submenu) {
                 $menu.addClass("lzm-dropdown-submenu-content");
             }
             $.each(items, function (i, obj) {

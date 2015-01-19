@@ -59,7 +59,7 @@
                                 label     : "<i class='fa fa-save'></i> Guardar",
                                 className : "btn-success",
                                 callback  : function () {
-                                    openLoader("Guardando usuario");
+                                    lzmOpenLoader("Guardando usuario");
                                     $.ajax({
                                         type    : "POST",
                                         url     : "${createLink(action:'save_ajax')}",
@@ -73,7 +73,7 @@
                                                 if (parts[0] == "SUCCESS") {
                                                     location.reload(true);
                                                 } else {
-                                                    closeLoader();
+                                                    lzmCloseLoader();
                                                     return false;
                                                 }
                                             }, 1000);
